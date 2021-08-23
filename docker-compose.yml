@@ -1,0 +1,29 @@
+version: "3.0"
+services:
+  db:
+    image: mysql:5.7
+    command: npm run start:dev
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: carbon-db
+      MYSQL_USER: carbon-db-user
+      MYSQL_PASSWORD: carbon-db-password
+    ports:
+      - "3000:3306"
+  api:
+    image: api:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - BUILD_VERSION=local
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
