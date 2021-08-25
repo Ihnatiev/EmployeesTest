@@ -5,18 +5,19 @@ import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "./pipes/validation.pipe";
 
 async function start(): Promise<void> {
-  const app: INestApplication = await NestFactory.create(AppModule);
+    const app: INestApplication = await NestFactory.create(AppModule);
 
-  const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder()
-    .setTitle("Employees")
-    .setVersion("1.0.0")
-    .build();
+    const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder()
+        .setTitle("Employees")
+        .setVersion("1.0.0")
+        .build();
 
-  const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("api/docs", app, document);
+    const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup("api/docs", app, document);
 
-  app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(3000);
+    await app.listen(3000);
 }
+
 start();

@@ -7,11 +7,12 @@ import { AuthModule } from "../auth/auth.module";
 import { Department } from "../departments/departments.model";
 
 @Module({
-  providers: [EmployeesService],
-  controllers: [EmployeesController],
-  imports: [
-    SequelizeModule.forFeature([Employee, Department]),
-    forwardRef(() => AuthModule)
-  ]
+    providers: [EmployeesService],
+    controllers: [EmployeesController],
+    imports: [
+        SequelizeModule.forFeature([Employee, Department]),
+        forwardRef(() => AuthModule)
+    ]
 })
-export class EmployeesModule {}
+export class EmployeesModule {
+}
