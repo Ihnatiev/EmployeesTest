@@ -6,15 +6,16 @@ import { AuthService } from "./auth.service";
 @ApiTags("Authorization")
 @Controller("auth")
 export class AuthController {
-  constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService) {
+    }
 
-  @Post("/login")
-  login(@Body() userDto: CreateUserDto): Promise<any> {
-    return this.authService.login(userDto);
-  }
+    @Post("/login")
+    login(@Body() userDto: CreateUserDto): Promise<any> {
+        return this.authService.login(userDto);
+    }
 
-  @Post("/signup")
-  registration(@Body() userDto: CreateUserDto): Promise<any> {
-    return this.authService.registration(userDto);
-  }
+    @Post("/signup")
+    registration(@Body() userDto: CreateUserDto): Promise<any> {
+        return this.authService.registration(userDto);
+    }
 }
